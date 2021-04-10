@@ -1,0 +1,48 @@
+http:
+
+  routers:
+    eve:
+      entryPoints:
+        - "https"
+      rule: "Host(`eve.qtslabs.com`)"
+      middlewares:
+        - chain-authelia@file
+      tls:
+        - "true"
+      service: eve-lab
+    eve-lab:
+      loadBalancer:
+        servers:
+          - url: "https://172.20.11.111:443"
+        passHostHeader: true
+#  middlewares:
+#    addprefix-pihole:
+#      addPrefix:
+#        prefix: "/admin"
+
+#    https-redirect:
+#      redirectScheme:
+#        scheme: https
+
+#    default-headers:
+#      headers:
+#        frameDeny: true
+#        sslRedirect: true
+ #       browserXssFilter: true
+ #       contentTypeNosniff: true
+#        forceSTSHeader: true
+#        stsIncludeSubdomains: true
+ #       stsPreload: true
+
+ #   default-whitelist:
+ #     ipWhiteList:
+ #       sourceRange:
+ #       - "10.0.0.0/24"
+ #       - "192.168.0.0/16"
+ #       - "172.0.0.0/8"
+
+#    secured:
+ #     chain:
+ #       middlewares:
+ #       - default-whitelist
+ #       - default-headers

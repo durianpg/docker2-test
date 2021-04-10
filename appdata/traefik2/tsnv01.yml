@@ -1,0 +1,14 @@
+http:
+  routers:
+    tnsv01:
+      entryPoints:
+        - "https"
+      rule: "Host(`tnsv01.qtslabs.com`)"
+      middlewares:
+        - chain-authelia@file
+      service: tnsv01
+    tnsv01:
+      loadBalancer:
+        servers:
+          - url: "http://172.20.11.87:80"
+        passHostHeader: true

@@ -1,15 +1,15 @@
 http:
-
   routers:
     eve:
       entryPoints:
         - "https"
       rule: "Host(`eve.qtslabs.com`)"
       middlewares:
-        - chain-authelia@file
+        - "chain-authelia@file"
       tls:
         - "true"
       service: eve-lab
+  services:    
     eve-lab:
       loadBalancer:
         servers:
